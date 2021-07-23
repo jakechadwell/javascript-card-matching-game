@@ -1,0 +1,28 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    background-color: #343a40;
+}
+img{
+    height: 100px;
+    width: 100px;
+}
+.memory-game{
+    height: 640px;
+    width: 640px;
+    display: flex;
+    border: 2px solid lightcoral;
+}
+.memory-card{
+    border: mediumpurple solid 2px;
+}
+.navbar-brand{
+    font-family: 'Oswald', sans-serif;
+    font-size: xxx-large;
+    margin-right: auto;
+    margin-left: auto;
+}
