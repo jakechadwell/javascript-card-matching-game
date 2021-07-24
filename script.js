@@ -1,7 +1,68 @@
-let cards = document.querySelectorAll('.memory-card');
+const cards = document.querySelectorAll('.memory-card');
 
-function flipCard(){
-    this.classList.toggle('flip');
+let hasFlippedCard = false;
+let lockBoard = false;
+let firstCard, secondCard;
+
+function flipCard() {
+  if (lockBoard) return;
+  if (this === firstCard) return;
+
+  this.classList.add('flip');
+
+  if (!hasFlippedCard) {
+    hasFlippedCard = true;
+    firstCard = this;
+
+    return;
+  }
+
+  secondCard = this;
+
+  checkForMatch();
 }
 
+function checkForMatch() {
+  let isMatch = firstCard.dataset.name === secondCard.dataset.name;
+
+  isMatch ? disableCards() : unFlipCards();
+}
+
+function disableCards() {
+  firstCard.removeEventListener('click', flipCard);
+  secondCard.removeEventListener('click', flipCard);
+
+  resetBoard();
+}
+
+function unFlipCards() {
+  lockBoard = true;
+
+  setTimeout(() => {
+    firstCard.classList.remove('flip');
+    secondCard.classList.remove('flip');
+    resetBoard();
+  }, 1250);
+}
+
+function resetBoard() {
+  [hasFlippedCard, lockBoard] = [false, false];
+  [firstCard, secondCard] = [null, null];
+}
+
+function resetWholeBoard(){
+    console.log('hey');
+    cards.classList.remove('flip');
+    resetBoard;
+    shuffle;
+}
+
+(function shuffle() {
+  cards.forEach(card => {
+    let randomPos = Math.floor(Math.random() * 12);
+    card.style.order = randomPos;
+  });
+})();
+
 cards.forEach(card => card.addEventListener('click', flipCard));
+document.getElementById('reset-btn').addEventListener('click', resetWholeBoard);
