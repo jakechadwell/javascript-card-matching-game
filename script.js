@@ -51,10 +51,18 @@ function resetBoard() {
 }
 
 function resetWholeBoard(){
-    console.log('hey');
-    cards.classList.remove('flip');
-    resetBoard;
-    shuffle;
+    lockBoard = false;
+    cards.forEach(card => {
+        if(card.classList.contains('flip')){
+            card.classList.remove('flip');
+            card.addEventListener('click', flipCard);
+        }
+        setTimeout(() => {
+            let randomPos = Math.floor(Math.random() * 12);
+            card.style.order = randomPos;
+          }, 500);
+      });
+      resetBoard();
 }
 
 (function shuffle() {

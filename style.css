@@ -53,3 +53,9 @@ img{
     margin-right: auto;
     margin-left: auto;
 }
+#reset-btn{
+    color: white;
+    background: mediumpurple;
+    margin-left: 35em;
+    margin-top: 5em;
+}
